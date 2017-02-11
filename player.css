@@ -111,7 +111,7 @@
 }
 
 .video-js.vjs-custom-skin .vjs-time-tooltip,
-.video-js.vjs-custom-skin .vjs-mouse-display:after, 
+.video-js.vjs-custom-skin .vjs-mouse-display:after,
 .video-js.vjs-custom-skin .vjs-play-progress:after {
   border-radius: 0;
   font-size: 1em;
@@ -132,7 +132,7 @@
 }
 
 .video-js.vjs-custom-skin .vjs-control-bar .vjs-resolution-button .vjs-menu {
-   /*order: 4;*/
+  order: 4;
 }
 
  /*排序顺序*/

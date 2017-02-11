@@ -70,6 +70,8 @@
         options.live  = options.live || false
         // player_src
         options.source  = options.source || false
+        // player_tracks
+        options.track = options.track || false
         // playbackRates [0.7, 1.0, 1.5, 2.0]
         options.playbackRates = options.playbackRates || false
         // player defaultSrcReId
@@ -96,6 +98,26 @@
             }
           } else {
             if (!options.source.src) {
+              this.dispose()
+              return console.warn('video resource is illegitimate')
+            }
+          }
+        }
+
+        if (typeof options.track !== 'object') {
+          this.dispose()
+          return console.error('video resource must be a object or array')
+        } else {
+          if (options.track instanceof Array) {
+            for (var i = 0, length = options.track.length; i < length; i++) {
+              var item = options.track[i];
+              if (!item.src) {
+                this.dispose()
+                return console.warn('video resource is illegitimate')
+              }
+            }
+          } else {
+            if (!options.track.src) {
               this.dispose()
               return console.warn('video resource is illegitimate')
             }
@@ -159,6 +181,10 @@
           // 多播放源切换
           } else {
             video_options.plugins = { videoJsResolutionSwitcher: { default: options.defaultSrcReId, dynamicLabel: true }}
+          }
+
+          if (!!options.track.src) {
+            video_options.tracks = [options.track]
           }
 
           // 是否使用播放速度控制
@@ -299,6 +325,25 @@
               }
             } else {
               if (!options.source.src) {
+                this.dispose()
+                return console.warn('video resource is illegitimate')
+              }
+            }
+          }
+          if (typeof options.track !== 'object') {
+            this.dispose()
+            return console.error('video resource must be a object or array')
+          } else {
+            if (options.track instanceof Array) {
+              for (var i = 0, length = options.track.length; i < length; i++) {
+                var item = options.track[i]
+                if (!item.src) {
+                  this.dispose()
+                  return console.warn('video resource is illegitimate')
+                }
+              }
+            } else {
+              if (!options.track.src) {
                 this.dispose()
                 return console.warn('video resource is illegitimate')
               }
